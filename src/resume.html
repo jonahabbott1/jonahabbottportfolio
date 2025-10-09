@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume — Jonah Abbott</title>
+    <meta name="description" content="Resume of Jonah Abbott" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+      .resume-actions { display:flex; gap: .75rem; justify-content: center; margin: 1rem 0; }
+      .resume-frame-wrapper { width: min(1100px, 96%); margin: 0 auto; }
+      /* scale the PDF for a larger, zoomed view while keeping it readable */
+      .resume-frame { width: 100%; height: 90vh; border: none; transform-origin: top center; }
+      /* If browser supports PDF viewing in iframe this will show; otherwise users can download */
+      .note { text-align:center; color: #444; font-size: .95rem; }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="resume.html" aria-current="page">Resume</a></li>
+      </ul>
+    </nav>
+
+    <main id="main">
+      <div class="resume-frame-wrapper">
+        <!-- Embed the PDF. Place the file 'Resume - Jonah Abbott.pdf' in the same folder as this file (src/) -->
+        <iframe class="resume-frame" src="Resume - Jonah Abbott.pdf"></iframe>
+      </div>
+
+      <p class="note">___________________________If the PDF does not display, click "Open in new tab" or download the file._________________________</p>
+    </main>
+  </body>
+</html>
