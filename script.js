@@ -34,13 +34,6 @@
 		return img;
 	}
 
-	function appendFinalCursor(cwdVal) {
-		var cursor = document.createElement('span');
-		cursor.className = 'boot-cursor';
-		output.appendChild(makePrompt(cwdVal));
-		output.appendChild(cursor);
-	}
-
 	function renderInstant() {
 		var runningCwd = '~';
 		lines.forEach(function (line) {
@@ -52,17 +45,18 @@
 				output.appendChild(document.createTextNode(line.text + '\n'));
 			} else if (line.type === 'image') {
 				output.appendChild(makeImage(line));
+				output.appendChild(document.createTextNode('\n'));
 			}
 		});
-		appendFinalCursor(runningCwd);
+		output.appendChild(makePrompt(runningCwd));
+		var cursor = document.createElement('span');
+		cursor.className = 'boot-cursor';
+		output.appendChild(cursor);
 	}
 
-	var alreadyPlayed = sessionStorage.getItem('bootPlayed');
 	var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-	if (alreadyPlayed || reduceMotion) {
+	if (reduceMotion) {
 		renderInstant();
-		sessionStorage.setItem('bootPlayed', '1');
 		return;
 	}
 
@@ -72,10 +66,19 @@
 		skipped = true;
 		output.textContent = '';
 		renderInstant();
-		sessionStorage.setItem('bootPlayed', '1');
 	}
 	document.getElementById('main').addEventListener('click', skipToEnd);
 	document.addEventListener('keydown', skipToEnd);
+
+	// Cursor stays in the DOM the whole time; new content is inserted just before it,
+	// so it always sits at the current write position (visible while typing, not just at the end).
+	var cursor = document.createElement('span');
+	cursor.className = 'boot-cursor';
+	output.appendChild(cursor);
+
+	function insertBeforeCursor(node) {
+		output.insertBefore(node, cursor);
+	}
 
 	var lineIndex = 0;
 	var charIndex = 0;
@@ -83,24 +86,24 @@
 	function nextLine() {
 		if (skipped) return;
 		if (lineIndex >= lines.length) {
-			appendFinalCursor(cwd);
-			sessionStorage.setItem('bootPlayed', '1');
+			insertBeforeCursor(makePrompt(cwd));
 			return;
 		}
 
 		var line = lines[lineIndex];
 
 		if (line.type === 'out') {
-			output.appendChild(document.createTextNode(line.text + '\n'));
+			insertBeforeCursor(document.createTextNode(line.text + '\n'));
 			lineIndex++;
-			setTimeout(nextLine, 400);
+			setTimeout(nextLine, 500);
 			return;
 		}
 
 		if (line.type === 'image') {
-			output.appendChild(makeImage(line));
+			insertBeforeCursor(makeImage(line));
+			insertBeforeCursor(document.createTextNode('\n'));
 			lineIndex++;
-			setTimeout(nextLine, 400);
+			setTimeout(nextLine, 500);
 			return;
 		}
 
@@ -110,19 +113,26 @@
 	function typeCmdChar(line) {
 		if (skipped) return;
 		if (charIndex === 0) {
-			output.appendChild(makePrompt(cwd));
+			insertBeforeCursor(makePrompt(cwd));
 		}
 
 		if (charIndex < line.text.length) {
-			output.appendChild(document.createTextNode(line.text[charIndex]));
+			insertBeforeCursor(document.createTextNode(line.text[charIndex]));
 			charIndex++;
 			setTimeout(function () { typeCmdChar(line); }, 22 + Math.random() * 30);
 		} else {
-			output.appendChild(document.createTextNode('\n'));
+			insertBeforeCursor(document.createTextNode('\n'));
 			if (line.cwdAfter) cwd = line.cwdAfter;
 			lineIndex++;
 			charIndex = 0;
-			setTimeout(nextLine, 350);
+
+			var next = lines[lineIndex];
+			var nextIsOutput = next && (next.type === 'out' || next.type === 'image');
+			if (nextIsOutput) {
+				nextLine(); // output prints instantly right after the command finishes typing
+			} else {
+				setTimeout(nextLine, 300); // small pause before the next command starts typing
+			}
 		}
 	}
 
