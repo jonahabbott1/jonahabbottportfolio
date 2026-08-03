@@ -10,6 +10,8 @@
 		{ type: 'cmd', text: 'whoami' },
 		{ type: 'out', text: 'Jonah Abbott' },
 		{ type: 'cmd', text: 'cd portfolio', cwdAfter: '~/portfolio' },
+		{ type: 'cmd', text: 'cat education.txt' },
+		{ type: 'out', text: 'Bachelor of Science in Cybersecurity, Brigham Young University' },
 		{ type: 'cmd', text: 'cat about.txt' },
 		{ type: 'out', text: bio },
 		{ type: 'cmd', text: 'open profile.jpg' },
