@@ -9,15 +9,17 @@
     <style>
       .resume-actions { display:flex; gap: .75rem; justify-content: center; margin: 1rem 0 1.5rem; }
       .resume-frame-wrapper {
-        width: min(1100px, 96%);
+        width: min(1600px, 98%);
         margin: 0 auto;
         background: #fff;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 6px 18px rgba(0,0,0,0.4);
       }
-      /* toolbar/navpanes/scrollbar=0 hides the browser's built-in PDF chrome so it reads like part of the page */
-      .resume-frame { width: 100%; height: 90vh; border: none; display: block; }
+      /* toolbar/navpanes=0 hides the browser's built-in PDF chrome so it reads like part of the page.
+         A fixed numeric zoom is used instead of "fit width" because Chrome's PDF viewer doesn't reliably
+         recompute fit-to-width against an iframe's actual CSS size; the tall frame + scroll reveals the rest. */
+      .resume-frame { width: 100%; height: 92vh; border: none; display: block; }
       .note { text-align:center; color: var(--muted-text); font-size: .9rem; margin-top: .75rem; }
     </style>
   </head>
