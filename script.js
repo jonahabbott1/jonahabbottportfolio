@@ -18,7 +18,7 @@
 		{ type: 'cmd', text: 'cd portfolio', cwdAfter: '~/portfolio' },
 		{ type: 'cmd', text: 'cat about.txt' },
 		{ type: 'out', text: 'Cybersecurity student @ BYU.' },
-		{ type: 'out', text: 'Building secure systems. Breaking insecure ones (with permission).' }
+		{ type: 'out', text: 'Building secure systems. Breaking insecure ones.' }
 	];
 
 	var skipped = false;
@@ -51,7 +51,7 @@
 	var lineIndex = 0;
 	var charIndex = 0;
 
-	function typeChar() {
+	function nextLine() {
 		if (skipped) return;
 		if (lineIndex >= lines.length) {
 			output.appendChild(cursor);
@@ -60,10 +60,22 @@
 		}
 
 		var line = lines[lineIndex];
-		var prefix = line.type === 'cmd' ? host + ':' + cwd + '$ ' : '';
-		var full = prefix + line.text;
 
-		if (charIndex === 0 && prefix) {
+		if (line.type === 'out') {
+			output.appendChild(document.createTextNode(line.text + '\n'));
+			lineIndex++;
+			setTimeout(nextLine, 350);
+			return;
+		}
+
+		typeCmdChar(line);
+	}
+
+	function typeCmdChar(line) {
+		if (skipped) return;
+		var prefix = host + ':' + cwd + '$ ';
+
+		if (charIndex === 0) {
 			var promptSpan = document.createElement('span');
 			promptSpan.className = 'boot-prompt';
 			promptSpan.textContent = prefix;
@@ -73,15 +85,15 @@
 		if (charIndex < line.text.length) {
 			output.appendChild(document.createTextNode(line.text[charIndex]));
 			charIndex++;
-			setTimeout(typeChar, 22 + Math.random() * 30);
+			setTimeout(function () { typeCmdChar(line); }, 22 + Math.random() * 30);
 		} else {
 			output.appendChild(document.createTextNode('\n'));
 			if (line.cwdAfter) cwd = line.cwdAfter;
 			lineIndex++;
 			charIndex = 0;
-			setTimeout(typeChar, 350);
+			setTimeout(nextLine, 350);
 		}
 	}
 
-	typeChar();
+	nextLine();
 })();
