@@ -8,14 +8,6 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div id="boot-sequence" aria-hidden="true">
-			<pre id="boot-output"></pre>
-		</div>
-		<script>
-			if (sessionStorage.getItem('bootPlayed')) {
-				document.getElementById('boot-sequence').style.display = 'none';
-			}
-		</script>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<nav class="site-nav" aria-label="Main navigation">
 			<ul>
@@ -26,19 +18,15 @@
 			</ul>
 		</nav>
 		<main id="main">
-			<div class="profile-row">
-				<img class="avatar" src="images/profile-avatar.jpg" alt="picture of Jonah" width="200" height="200">
-				<div class="text-block">
-					<h1>Hi, <br> I'm Jonah Abbott</h1>
-					<h3><span>Bachelor of Science in </span>Cybersecurity<span>, Brigham Young University</span></h3>
-					<style>
-					h3 span {
-						font-weight: normal;
-					}
-					</style>
+			<div class="terminal-window">
+				<div class="terminal-titlebar">
+					<span class="terminal-dot dot-red"></span>
+					<span class="terminal-dot dot-yellow"></span>
+					<span class="terminal-dot dot-green"></span>
+					<span class="terminal-title">admin@myportfolio — bash</span>
 				</div>
+				<pre class="terminal-body" id="boot-output"></pre>
 			</div>
-			<p class="about-text">I'm passionate about understanding emerging cyber threats and developing the technical skills to defend against them. My experience includes Windows system administration, vulnerability mitigation, and local network configuration. I also love anything with wheels and enjoy playing racquetball!</p>
 
 			<div class="action-buttons">
 				<a class="btn" href="projects.html">>My Projects!</a>

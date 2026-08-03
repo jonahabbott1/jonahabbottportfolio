@@ -39,33 +39,6 @@ main {
 a { color: var(--primary-red); }
 a:visited { color: var(--primary-red); }
 
-/* Profile row: image left, centered text */
-.profile-row {
-  display: flex;
-  align-items: center;    /* vertical alignment between image and text */
-  justify-content: center; /* center the group horizontally */
-  gap: 20px;
-  flex-wrap: wrap;        /* stack on very narrow screens */
-}
-
-.avatar {
-	width: 200px;
-	height: 200px; 
-	object-fit: cover;
-	flex: 0 0 auto;
-	border-radius: 0;
-	box-shadow: 0 6px 18px rgba(0,0,0,0.7); 
-	margin-left: 4rem;
-}
-
-.text-block { text-align: left; max-width: 40ch; margin: 0; }
-.about-text {
-	max-width: 60ch;
-	margin: 1rem auto; /* center and remove forced overflow */
-	padding: 0 1rem;   /* breathing room on small screens */
-	text-align: left;
-}
-
 /* Buttons: minimal outline/ghost style, fills solid on hover */
 .action-buttons { display:flex; gap: 6rem; justify-content: center; margin-top: 2.5rem; }
 .btn {
@@ -135,30 +108,53 @@ body {
 	}
 }
 
-/* Terminal boot sequence (home page intro) */
-#boot-sequence {
-	position: fixed;
-	inset: 0;
-	z-index: 9999;
-	background: var(--bg-color);
-	color: var(--text-color);
-	padding: 2rem;
+/* Terminal hero: the home page's "about me" is presented as a terminal window */
+.terminal-window {
+	width: min(720px, 96%);
+	margin: 2rem auto 0;
+	background: #0a0a0a;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 12px 32px rgba(0,0,0,0.55);
+	border: 1px solid rgba(255,255,255,0.06);
+}
+.terminal-titlebar {
 	display: flex;
-	align-items: flex-start;
-	cursor: pointer;
-	transition: opacity .4s ease;
+	align-items: center;
+	gap: .5rem;
+	padding: .6rem .8rem;
+	background: var(--surface-color);
 }
-#boot-sequence.boot-hidden {
-	opacity: 0;
-	pointer-events: none;
+.terminal-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+.terminal-title {
+	flex: 1;
+	text-align: center;
+	font-family: 'Fira Code', monospace;
+	font-size: .8rem;
+	color: var(--muted-text);
+	margin-right: 2.5rem; /* balances the dots' width so the title is visually centered */
 }
-#boot-output {
+.terminal-body {
 	margin: 0;
+	min-height: 22rem;
+	padding: 1.25rem 1.5rem 1.75rem;
 	font-family: 'Fira Code', monospace;
 	font-size: 1rem;
-	line-height: 1.6;
+	line-height: 1.7;
 	white-space: pre-wrap;
 	word-break: break-word;
+}
+.terminal-body img {
+	display: block;
+	width: 160px;
+	height: 160px;
+	object-fit: cover;
+	border-radius: 4px;
+	margin: .5rem 0;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.5);
 }
 .boot-prompt { color: var(--primary-red); }
 .boot-cursor {
