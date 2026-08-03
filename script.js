@@ -2,7 +2,7 @@
 	var output = document.getElementById('boot-output');
 	if (!output) return;
 
-	var host = 'admin@myportfolio';
+	var host = 'jonah@localhost';
 	var cwd = '~';
 	var bio = "I'm passionate about understanding emerging cyber threats and developing the technical skills to defend against them. My experience includes Windows system administration, vulnerability mitigation, and local network configuration. I also love anything with wheels and enjoy playing racquetball!";
 
