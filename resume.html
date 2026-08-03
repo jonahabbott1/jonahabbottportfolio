@@ -7,12 +7,18 @@
     <meta name="description" content="Resume of Jonah Abbott" />
     <link rel="stylesheet" href="style.css">
     <style>
-      .resume-actions { display:flex; gap: .75rem; justify-content: center; margin: 1rem 0; }
-      .resume-frame-wrapper { width: min(1100px, 96%); margin: 0 auto; }
-      /* scale the PDF for a larger, zoomed view while keeping it readable */
-      .resume-frame { width: 100%; height: 90vh; border: none; transform-origin: top center; }
-      /* If browser supports PDF viewing in iframe this will show; otherwise users can download */
-      .note { text-align:center; color: #444; font-size: .95rem; }
+      .resume-actions { display:flex; gap: .75rem; justify-content: center; margin: 1rem 0 1.5rem; }
+      .resume-frame-wrapper {
+        width: min(1100px, 96%);
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      }
+      /* toolbar/navpanes/scrollbar=0 hides the browser's built-in PDF chrome so it reads like part of the page */
+      .resume-frame { width: 100%; height: 90vh; border: none; display: block; }
+      .note { text-align:center; color: #444; font-size: .9rem; margin-top: .75rem; }
     </style>
   </head>
   <body>
@@ -27,12 +33,18 @@
     </nav>
 
     <main id="main">
-      <div class="resume-frame-wrapper">
-        <!-- Embed the latest resume PDF. All resume versions live in resumes/; this points at the current one. -->
-        <iframe class="resume-frame" src="resumes/jonahresume-august2026.pdf"></iframe>
+      <div class="resume-actions">
+        <a class="btn primary" href="resumes/jonahresume-august2026.pdf" target="_blank" rel="noopener">Open in New Tab</a>
+        <a class="btn" href="resumes/jonahresume-august2026.pdf" download>Download PDF</a>
       </div>
 
-      <p class="note">___________________________If the PDF does not display, click "Open in new tab" or download the file._________________________</p>
+      <div class="resume-frame-wrapper">
+        <!-- Embed the latest resume PDF. All resume versions live in resumes/; this points at the current one.
+             toolbar=0&navpanes=0&scrollbar=0 strips the native PDF viewer chrome for a cleaner in-page look. -->
+        <iframe class="resume-frame" src="resumes/jonahresume-august2026.pdf#toolbar=0&navpanes=0&view=FitH" title="Jonah Abbott resume preview"></iframe>
+      </div>
+
+      <p class="note">If the preview doesn't load, use "Open in New Tab" or "Download PDF" above.</p>
     </main>
   </body>
 </html>
