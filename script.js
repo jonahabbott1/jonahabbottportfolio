@@ -119,7 +119,7 @@
 		if (charIndex < line.text.length) {
 			insertBeforeCursor(document.createTextNode(line.text[charIndex]));
 			charIndex++;
-			setTimeout(function () { typeCmdChar(line); }, 22 + Math.random() * 30);
+			setTimeout(function () { typeCmdChar(line); }, 29 + Math.random() * 39);
 		} else {
 			insertBeforeCursor(document.createTextNode('\n'));
 			if (line.cwdAfter) cwd = line.cwdAfter;
