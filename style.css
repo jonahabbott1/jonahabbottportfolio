@@ -135,6 +135,42 @@ body {
 	}
 }
 
+/* Terminal boot sequence (home page intro) */
+#boot-sequence {
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	background: var(--bg-color);
+	color: var(--text-color);
+	padding: 2rem;
+	display: flex;
+	align-items: flex-start;
+	cursor: pointer;
+	transition: opacity .4s ease;
+}
+#boot-sequence.boot-hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+#boot-output {
+	margin: 0;
+	font-family: 'Fira Code', monospace;
+	font-size: 1rem;
+	line-height: 1.6;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+.boot-prompt { color: var(--primary-red); }
+.boot-cursor {
+	display: inline-block;
+	width: .55em;
+	height: 1em;
+	background: var(--primary-red);
+	vertical-align: text-bottom;
+	animation: boot-blink 1s steps(1) infinite;
+}
+@keyframes boot-blink { 50% { opacity: 0; } }
+
 /* Navbar styles */
 .skip-link {
 	position: absolute;

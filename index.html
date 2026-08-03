@@ -8,6 +8,14 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<div id="boot-sequence" aria-hidden="true">
+			<pre id="boot-output"></pre>
+		</div>
+		<script>
+			if (sessionStorage.getItem('bootPlayed')) {
+				document.getElementById('boot-sequence').style.display = 'none';
+			}
+		</script>
 		<a class="skip-link" href="#main">Skip to content</a>
 		<nav class="site-nav" aria-label="Main navigation">
 			<ul>
@@ -37,5 +45,6 @@
 				<a class="btn" href="contact.html">>Contact Me!</a>
 			</div>
 		</main>
+		<script src="script.js"></script>
 	</body>
 </html>
