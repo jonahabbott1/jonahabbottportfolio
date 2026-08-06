@@ -146,6 +146,7 @@ body {
 	line-height: 1.7;
 	white-space: pre-wrap;
 	word-break: break-word;
+	color: var(--muted-text);
 }
 .terminal-body img {
 	display: block;
@@ -157,6 +158,7 @@ body {
 	box-shadow: 0 6px 18px rgba(0,0,0,0.5);
 }
 .boot-prompt { color: var(--primary-red); }
+.boot-cmd { color: var(--text-color); }
 .boot-cursor {
 	display: inline-block;
 	width: .55em;
@@ -190,31 +192,71 @@ body {
 
 .site-nav {
 	width: 100%;
-	background: var(--surface-color);
-	padding: 1rem 2rem;
+	background: var(--bg-color);
+	border-bottom: 1px solid rgba(255,255,255,0.08);
+	padding: 1.1rem 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 2.5rem;
+	flex-wrap: wrap;
+}
+.nav-brand {
+	font-family: 'Fira Code', monospace;
+	font-size: 0.85rem;
+	letter-spacing: 0.01em;
+	text-decoration: none;
+	color: var(--muted-text);
+	transition: color .15s ease;
+}
+.nav-brand:hover,
+.nav-brand:focus {
+	color: var(--primary-red);
 }
 .site-nav ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	display: flex;
-	gap: 1rem;
-	justify-content: left; /* center links horizontally */
+	gap: 2rem;
+	justify-content: flex-start;
 }
 .site-nav a {
+	position: relative;
 	font-family: 'Fira Code', monospace;
 	font-size: 0.85rem;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
+	letter-spacing: 0.04em;
 	text-decoration: none;
-	color: var(--primary-red);
-	padding: 0.25rem 0.5rem;
-	border-radius: 4px;
-	transition: background .15s ease, color .15s ease;
+	color: var(--muted-text);
+	padding: 0.25rem 0.1rem;
+	transition: color .15s ease;
+}
+.site-nav ul a::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 100%;
+	bottom: -3px;
+	height: 1px;
+	background: var(--primary-red);
+	transition: right .2s ease;
 }
 .site-nav a:hover,
 .site-nav a:focus {
-	background: rgba(255,92,92,0.12);
+	color: var(--primary-red);
+}
+.site-nav ul a:hover::after,
+.site-nav ul a:focus::after {
+	right: 0;
+}
+.site-nav [aria-current="page"] {
+	color: var(--primary-red);
+}
+.site-nav ul a[aria-current="page"]::before {
+	content: '> ';
+}
+.site-nav ul a[aria-current="page"]::after {
+	right: 0;
 }
 
 /* Social icon links (contact page) */
@@ -223,9 +265,9 @@ body {
 .social-link:hover svg, .social-link:focus svg { filter: brightness(0.9); transform: translateY(-2px); }
 
 /* Responsive: stack nav links on narrow viewports */
-@media (max-width: 420px) {
-	.site-nav ul { flex-direction: column; gap: 0.5rem; align-items: center; }
-	.site-nav { padding: .75rem 1rem; }
+@media (max-width: 560px) {
+	.site-nav { flex-direction: column; align-items: center; gap: 0.75rem; padding: 1rem; }
+	.site-nav ul { justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
 }
 
 /* Projects grid */

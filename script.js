@@ -39,7 +39,11 @@
 		lines.forEach(function (line) {
 			if (line.type === 'cmd') {
 				output.appendChild(makePrompt(runningCwd));
-				output.appendChild(document.createTextNode(line.text + '\n'));
+				var cmdSpan = document.createElement('span');
+				cmdSpan.className = 'boot-cmd';
+				cmdSpan.textContent = line.text;
+				output.appendChild(cmdSpan);
+				output.appendChild(document.createTextNode('\n'));
 				if (line.cwdAfter) runningCwd = line.cwdAfter;
 			} else if (line.type === 'out') {
 				output.appendChild(document.createTextNode(line.text + '\n'));
@@ -82,6 +86,7 @@
 
 	var lineIndex = 0;
 	var charIndex = 0;
+	var currentCmdSpan = null;
 
 	function nextLine() {
 		if (skipped) return;
@@ -114,14 +119,18 @@
 		if (skipped) return;
 		if (charIndex === 0) {
 			insertBeforeCursor(makePrompt(cwd));
+			currentCmdSpan = document.createElement('span');
+			currentCmdSpan.className = 'boot-cmd';
+			insertBeforeCursor(currentCmdSpan);
 		}
 
 		if (charIndex < line.text.length) {
-			insertBeforeCursor(document.createTextNode(line.text[charIndex]));
+			currentCmdSpan.textContent += line.text[charIndex];
 			charIndex++;
 			setTimeout(function () { typeCmdChar(line); }, 29 + Math.random() * 39);
 		} else {
 			insertBeforeCursor(document.createTextNode('\n'));
+			currentCmdSpan = null;
 			if (line.cwdAfter) cwd = line.cwdAfter;
 			lineIndex++;
 			charIndex = 0;
