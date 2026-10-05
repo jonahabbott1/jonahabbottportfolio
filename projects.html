@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projects — jonah abbott</title>
+    <title>Projects | Jonah Abbott</title>
     <meta name="description" content="Projects by Jonah Abbott" />
     <link rel="stylesheet" href="style.css">
   </head>
@@ -18,49 +18,87 @@
       </ul>
     </nav>
 
-    <main id="main">
-      <h1>Projects</h1>
-      <p>Click a project to open its detail page.</p>
+    <main id="main" class="pa">
+      <header class="pa-head">
+        <div class="pa-kicker">~/projects</div>
+        <h1>Things I've built</h1>
+        <p>Security challenges, deployments, and web apps, from capture-the-flag exploits to a live AI debate platform.</p>
+      </header>
 
-      <section class="projects-grid">
-        <a class="project-tile" href="https://debately.io" target="_blank" rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/debately.png" alt="Debately.io home page">
+      <a class="pa-card pa-featured" data-cat="web ai" href="https://debately.io" target="_blank" rel="noopener noreferrer">
+        <div class="pa-thumb">
+          <span class="pa-badge">live</span>
+          <img src="images/debately.png" alt="Debately.io home page">
+        </div>
+        <div class="pa-body">
+          <span class="pa-cat">// featured · web · ai</span>
+          <h2 class="pa-title">Debately.io: Real-Time Debates Judged by AI</h2>
+          <p class="pa-desc">A web platform where two people go head-to-head in a live debate, and an AI judge scores the arguments and calls the winner.</p>
+          <div class="pa-tags"><span class="pa-tag">AI</span><span class="pa-tag">Real-time</span><span class="pa-tag">Full-stack</span></div>
+        </div>
+        <span class="pa-link"><span>visit debately.io</span><span class="arrow">→</span></span>
+      </a>
+
+      <div class="pa-filters" role="group" aria-label="Filter projects">
+        <button class="pa-filter" data-filter="all" aria-pressed="true">all</button>
+        <button class="pa-filter" data-filter="security" aria-pressed="false">security</button>
+        <button class="pa-filter" data-filter="web" aria-pressed="false">web</button>
+        <button class="pa-filter" data-filter="python" aria-pressed="false">python</button>
+      </div>
+
+      <section class="pa-grid">
+        <a class="pa-card" data-cat="security" href="https://docs.google.com/presentation/d/e/2PACX-1vQB71fuXv08Kx0W2Mqn-zyaJLTyVxOT1DaOD64lSgSysT2avq0krHfRYB0jwRpNVnrIo7Fd3RonOysb/pub?start=true&loop=true&delayms=60000" target="_blank" rel="noopener noreferrer">
+          <div class="pa-thumb"><img src="images/phishingsitescreenshot.png" alt="Phishing demo site screenshot"></div>
+          <div class="pa-body">
+            <span class="pa-cat">// security</span>
+            <h2 class="pa-title">Interactive Phishing Awareness Demo</h2>
+            <p class="pa-desc">Walks users through a simulated phishing attack, then breaks down the red flags they missed.</p>
+            <div class="pa-tags"><span class="pa-tag">Social engineering</span><span class="pa-tag">Awareness</span></div>
           </div>
-          <div class="project-label">Debately.io: Real-Time Debates Judged by AI</div>
+          <span class="pa-link"><span>view slides</span><span class="arrow">→</span></span>
         </a>
-        <a class="project-tile" href="https://docs.google.com/presentation/d/e/2PACX-1vQB71fuXv08Kx0W2Mqn-zyaJLTyVxOT1DaOD64lSgSysT2avq0krHfRYB0jwRpNVnrIo7Fd3RonOysb/pub?start=true&loop=true&delayms=60000" target="_blank" rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/phishingsitescreenshot.png" alt="phishingsitescreenshot">
+        <a class="pa-card" data-cat="security python" href="https://github.com/jonahabbott1/CTF" target="_blank" rel="noopener noreferrer">
+          <div class="pa-thumb"><img src="images/ctfproject.png" alt="SQL injection CTF"></div>
+          <div class="pa-body">
+            <span class="pa-cat">// security · python</span>
+            <h2 class="pa-title">Python Flask CTF Security Challenge</h2>
+            <p class="pa-desc">A deliberately vulnerable Flask app built as a capture-the-flag. Find the SQL injection and grab the flag.</p>
+            <div class="pa-tags"><span class="pa-tag">Python</span><span class="pa-tag">Flask</span><span class="pa-tag">SQLi</span></div>
           </div>
-          <div class="project-label">Interactive Phishing Awareness Demo</div>
+          <span class="pa-link"><span>view on github</span><span class="arrow">→</span></span>
         </a>
-        <a class="project-tile" href="https://github.com/jonahabbott1/CTF" target="_blank"rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/ctfproject.png" alt="SQL Injection CTF">
+        <a class="pa-card" data-cat="security web" href="https://github.com/jonahabbott1/tasklistwebsite" target="_blank" rel="noopener noreferrer">
+          <div class="pa-thumb"><img src="images/tasklistwebsite.png" alt="Task list website"></div>
+          <div class="pa-body">
+            <span class="pa-cat">// security · web</span>
+            <h2 class="pa-title">Secure Web App Deployment (DNS &amp; TLS)</h2>
+            <p class="pa-desc">A task list app deployed to a public server with a custom domain, DNS records, and TLS for HTTPS.</p>
+            <div class="pa-tags"><span class="pa-tag">DNS</span><span class="pa-tag">TLS</span><span class="pa-tag">Deployment</span></div>
           </div>
-          <div class="project-label">Python Flask CTF Security Challenge</div>
+          <span class="pa-link"><span>view on github</span><span class="arrow">→</span></span>
         </a>
-        <a class="project-tile" href="https://github.com/jonahabbott1/tasklistwebsite" target="_blank"rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/tasklistwebsite.png" alt="tasklistwebsite">
+        <a class="pa-card" data-cat="security web" href="https://github.com/jonahabbott1/JSONtutorial/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+          <div class="pa-thumb"><img src="images/displayeddata.png" alt="Data displayed from localStorage"></div>
+          <div class="pa-body">
+            <span class="pa-cat">// security · web</span>
+            <h2 class="pa-title">Security Tutorial: JSON in localStorage</h2>
+            <p class="pa-desc">How to store JSON in the browser's localStorage, and what you should never keep there.</p>
+            <div class="pa-tags"><span class="pa-tag">JavaScript</span><span class="pa-tag">localStorage</span></div>
           </div>
-          <div class="project-label">Secure Web App Deployment (DNS & TLS)</div>
+          <span class="pa-link"><span>read tutorial</span><span class="arrow">→</span></span>
         </a>
-        <a class="project-tile" href="https://github.com/jonahabbott1/JSONtutorial/blob/main/README.md" target="_blank" rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/displayeddata.png" alt="displayeddata">
+        <a class="pa-card" data-cat="python" href="https://github.com/jonahabbott1/recursive-maze-generation" target="_blank" rel="noopener noreferrer">
+          <div class="pa-thumb"><img src="images/maze.jpg" alt="Generated maze"></div>
+          <div class="pa-body">
+            <span class="pa-cat">// python</span>
+            <h2 class="pa-title">Recursive Maze Generation</h2>
+            <p class="pa-desc">Generates random, always-solvable mazes using recursive backtracking.</p>
+            <div class="pa-tags"><span class="pa-tag">Python</span><span class="pa-tag">Recursion</span><span class="pa-tag">Algorithms</span></div>
           </div>
-          <div class="project-label">Security Tutorial: JSON in localStorage</div>
-        </a>
-        <a class="project-tile" href="https://github.com/jonahabbott1/recursive-maze-generation" target="_blank"rel="noopener noreferrer">
-          <div class="project-thumb">
-            <img src="images/maze.jpg" alt="Python Maze generation">
-          </div>
-          <div class="project-label">Recursive Maze Generation (Python)</div>
+          <span class="pa-link"><span>view on github</span><span class="arrow">→</span></span>
         </a>
       </section>
-
     </main>
+    <script src="script.js"></script>
   </body>
 </html>

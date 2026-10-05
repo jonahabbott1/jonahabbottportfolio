@@ -147,3 +147,19 @@
 
 	nextLine();
 })();
+
+// Projects page: filter buttons
+(function () {
+	var buttons = document.querySelectorAll('.pa-filter');
+	var cards = document.querySelectorAll('.pa-grid .pa-card');
+	function matches(card, f) { return f === 'all' || card.dataset.cat.split(' ').indexOf(f) !== -1; }
+	buttons.forEach(function (btn) {
+		var f = btn.dataset.filter;
+		var n = [].filter.call(cards, function (c) { return matches(c, f); }).length;
+		btn.insertAdjacentHTML('beforeend', '<span class="count">' + n + '</span>');
+		btn.addEventListener('click', function () {
+			buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+			cards.forEach(function (c) { c.hidden = !matches(c, f); });
+		});
+	});
+})();
