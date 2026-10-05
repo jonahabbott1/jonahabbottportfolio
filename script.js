@@ -163,3 +163,13 @@
 		});
 	});
 })();
+
+// Contact page: copy-to-clipboard buttons
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+	btn.addEventListener('click', function () {
+		navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+			btn.textContent = 'copied ✓';
+			setTimeout(function () { btn.textContent = 'copy'; }, 1800);
+		});
+	});
+});

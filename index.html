@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+		<meta name="referrer" content="strict-origin-when-cross-origin">
 		<title>Jonah Abbott</title>
 		<meta name="description" content="Personal portfolio of Jonah Abbott" />
 		<link rel="stylesheet" href="style.css">
@@ -18,6 +20,12 @@
 			</ul>
 		</nav>
 		<main id="main">
+			<header class="hero">
+				<p class="hero-kicker">~/whoami</p>
+				<h1>Jonah Abbott</h1>
+				<p class="hero-role">Cybersecurity student @ BYU</p>
+				<p class="hero-tag">I learn how systems break so I can defend them.</p>
+			</header>
 			<div class="terminal-window">
 				<div class="terminal-titlebar">
 					<span class="terminal-dot dot-red"></span>

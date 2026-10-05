@@ -259,11 +259,6 @@ body {
 	right: 0;
 }
 
-/* Social icon links (contact page) */
-.social-links { display:flex; gap: 1rem; margin-top: 1rem; }
-.social-link svg { width: 36px; height: 36px; display:block; color: var(--primary-red); }
-.social-link:hover svg, .social-link:focus svg { filter: brightness(0.9); transform: translateY(-2px); }
-
 /* Responsive: stack nav links on narrow viewports */
 @media (max-width: 560px) {
 	.site-nav { flex-direction: column; align-items: center; gap: 0.75rem; padding: 1rem; }
@@ -347,3 +342,79 @@ body {
 	.pa-card:hover { transform: none; }
 	.pa-badge::before { animation: none; }
 }
+
+/* Contact page: email box + link cards */
+.ca { width: min(900px, 100%); margin: 0 auto; padding: 2.5rem 1rem 5rem; }
+.ca-kicker { font-family: 'Fira Code', monospace; font-size: .8rem; color: var(--primary-red); letter-spacing: .06em; }
+.ca h1 { font-size: clamp(2rem, 5vw, 3rem); margin: .25rem 0 .5rem; line-height: 1.1; }
+.ca-lead { margin: 0; color: var(--muted-text); max-width: 52ch; }
+.ca-status { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; font-family: 'Fira Code', monospace; font-size: .78rem; padding: .3rem .8rem; border-radius: 999px; color: #7ee787; border: 1px solid rgba(126,231,135,.35); }
+.ca-status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #7ee787; animation: ca-pulse 2s ease-in-out infinite; }
+@keyframes ca-pulse { 50% { opacity: .3; } }
+
+.ca-email { margin-top: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.5rem 1.75rem; background: var(--surface-color); border: 1px solid rgba(255,92,92,.35); border-radius: 12px; box-shadow: 0 0 40px rgba(255,92,92,.06); }
+.ca-email small { display: block; font-family: 'Fira Code', monospace; font-size: .72rem; color: var(--primary-red); margin-bottom: .2rem; }
+.ca-email a { font-size: clamp(1.1rem, 3.2vw, 1.6rem); font-weight: 600; color: var(--text-color); text-decoration: none; word-break: break-all; }
+.ca-email a:hover { color: var(--primary-red); }
+.ca-copy { font-family: 'Fira Code', monospace; font-size: .8rem; padding: .55rem 1rem; border-radius: 6px; cursor: pointer; background: transparent; color: var(--primary-red); border: 1px solid var(--primary-red); transition: background .2s, color .2s; }
+.ca-copy:hover { background: var(--primary-red); color: var(--bg-color); }
+
+.ca-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+.ca-card { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.35rem; background: var(--surface-color); color: inherit; text-decoration: none; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.ca-card:visited { color: inherit; }
+.ca-card:hover, .ca-card:focus-visible { transform: translateY(-4px); border-color: rgba(255,92,92,.55); box-shadow: 0 14px 40px rgba(0,0,0,.55), 0 0 32px rgba(255,92,92,.08); outline: none; }
+.ca-icon { flex: none; width: 46px; height: 46px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,92,92,.1); color: var(--primary-red); }
+.ca-icon svg { width: 22px; height: 22px; }
+.ca-card b { display: block; font-weight: 600; }
+.ca-card span.h { font-family: 'Fira Code', monospace; font-size: .75rem; color: var(--muted-text); }
+.ca-card .arrow { margin-left: auto; color: var(--muted-text); transition: transform .2s, color .2s; }
+.ca-card:hover .arrow { transform: translateX(4px); color: var(--primary-red); }
+@media (prefers-reduced-motion: reduce) { .ca-card, .ca-card .arrow { transition: none; } .ca-card:hover { transform: none; } .ca-status::before { animation: none; } }
+
+/* Resume page */
+.resume-actions { display:flex; gap: .75rem; justify-content: center; margin: 1rem 0 1.5rem; }
+.resume-frame-wrapper {
+	width: min(1024px, 62%);
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+/* toolbar/navpanes=0 hides the browser's built-in PDF chrome so it reads like part of the page.
+	 A fixed numeric zoom is used instead of "fit width" because Chrome's PDF viewer doesn't reliably
+	 recompute fit-to-width against an iframe's actual CSS size; the tall frame + scroll reveals the rest. */
+.resume-frame { width: 100%; height: 92vh; border: none; display: block; }
+.note { text-align:center; color: var(--muted-text); font-size: .9rem; margin-top: .75rem; }
+
+/* Home page headline above the terminal */
+.hero {
+	width: min(720px, 96%);
+	margin: 2.5rem auto 0;
+}
+.hero-kicker {
+	margin: 0;
+	font-family: 'Fira Code', monospace;
+	font-size: .8rem;
+	letter-spacing: .06em;
+	color: var(--muted-text);
+}
+.hero h1 {
+	margin: .2rem 0 .35rem;
+	font-size: clamp(2.2rem, 6vw, 3.4rem);
+	line-height: 1.05;
+	letter-spacing: -.03em;
+}
+.hero-role {
+	margin: 0;
+	font-family: 'Fira Code', monospace;
+	font-size: clamp(.95rem, 2.4vw, 1.1rem);
+	font-weight: 500;
+	color: var(--primary-red);
+}
+.hero-tag {
+	margin: .6rem 0 0;
+	max-width: 52ch;
+	color: var(--muted-text);
+}
+.hero + .terminal-window { margin-top: 1.75rem; }
